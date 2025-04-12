@@ -1,5 +1,6 @@
 from stats import word_count
 from stats import char_count
+from stats import sorted_list_of_char_count_dict
 def get_book_text(file_name):
     file_content = ""
     with open(file_name) as f:
@@ -8,11 +9,26 @@ def get_book_text(file_name):
 
 
 def main():
-    content = get_book_text("books/frankenstein.txt")
+    book = "books/frankenstein.txt"
+    content = get_book_text(book)
     num_words = word_count(content)
-    print(f"{num_words} words found in the document")
+    # print(f"{num_words} words found in the document")
     #content = "The Project Gutenberg eBook of Frankenstein; Or, The Modern Prometheus"
-    print(char_count(content))
+    char_count_dict = char_count(content)
+    # print(sorted_list_of_char_count_dict(char_count_dict))
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
+    list_of_char_count = sorted_list_of_char_count_dict(char_count_dict)
+    for d in list_of_char_count:
+        # print(f"{d["char"]}:{d["count"]}")
+        print(f"{d["char"]}: {d["count"]}")
+    print("============= END ===============")
+
+
+
 
 main()
         
